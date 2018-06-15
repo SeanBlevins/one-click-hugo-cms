@@ -5,6 +5,36 @@ media_folder: "site/static/img" # Folder where user uploaded files should go
 public_folder: "img"
 
 collections: # A list of collections the CMS should be able to edit
+  - name: "Commision" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "commision" # Used in the UI, ie.: "New Post"
+    folder: "site/content/commision" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Created Date", name: "date", widget: "date"}
+      - {label: "Main Image", name: "mainImage", widget: "image"}
+      - {label: "Description", name: "description", widget: "markdown"}
+      - label: "Gallery"
+        name: "galleryImages"
+        widget: "list"
+        fields:
+          - {label: Image, name: image, widget: image}
+  - name: "gallery" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Gallery" # Used in the UI, ie.: "New Post"
+    folder: "site/content/gallery" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    editor:
+     preview: false
+    fields: # The fields each document in this collection have
+      - {label: "Title", name: "title", widget: "string"}
+      - label: "Pieces"
+        name: "pieces"
+        widget: "list"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Created Date", name: "date", widget: "date"}
+          - {label: "Image", name: "image", widget: "image"}
+          - {label: "Description", name: "description", widget: "text"}
   - name: "post" # Used in routes, ie.: /admin/collections/:slug/edit
     label: "Post" # Used in the UI, ie.: "New Post"
     folder: "site/content/post" # The path to the folder where the documents are stored
