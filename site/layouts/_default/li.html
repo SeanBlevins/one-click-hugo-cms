@@ -4,15 +4,8 @@
 	<p class="mb0">{{ .Description }}</p>
 	<p class="link b dib black mb0">Read more →</p>
 	{{ if .Params.Pieces }}
-	{{ .Params.Pieces }}
-	<p class="mb0">_</p> 
 		{{ range $piece := .Params.Pieces }}
-		{{ range $fields := .Params.Pieces }}
-		<p class="mb0">{{ $piece }}</p>
-		{{ end }}
-		<p class="mb0">{{ index ($piece) 0 }}</p>
-		<p class="mb0">{{ $piece }}</p>
-			<p class="mb0">t</p> 
+		<img src="{{ $piece.image }}" alt="{{ $piece.title }}" />
 		{{ end }}
 	{{ end }}
 </a>
