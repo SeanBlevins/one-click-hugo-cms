@@ -9,5 +9,9 @@ pieces:
     description: Old farts
     image: /img/gone-with-the-wind.jpg
     title: Gone with the wind
+  - date: '2018-06-16'
+    description: upside down mars bar
+    image: /img/upon-reflection.jpg
+    title: Upon reflection
 ---
 
