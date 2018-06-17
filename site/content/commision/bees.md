@@ -1,6 +1,6 @@
 ---
 title: Bees
-date: Jan 2018
+date: Feb 2018
 mainImage: /img/about-single-origin.jpg
 description: Bees man
 galleryImages:
