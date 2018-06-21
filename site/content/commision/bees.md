@@ -1,11 +1,11 @@
 ---
 title: Bees
 date: '2018-06-15'
-mainImage: /img/about-single-origin.jpg
+mainImage: /images/1.jpg
 description: Bees man
 galleryImages:
-  - image: /img/about-sustainable-farming.jpg
-  - image: /img/about-shade-grown.jpg
+  - image: /images/2.jpg
+  - image: /images/3.jpg
 company:
   name: Pitt Poeker
   reference: '"It was great working with Lisa"'
