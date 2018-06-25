@@ -9,5 +9,8 @@ pieces:
   - date: '2018-06-25'
     image: /images/3.jpg
     title: Sleeping
+  - date: '2018-06-25'
+    image: /images/2.jpg
+    title: Beats
 ---
 
