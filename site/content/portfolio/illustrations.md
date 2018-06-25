@@ -6,5 +6,9 @@ pieces:
     description: Old farts
     image: /images/gone-with-the-wind.jpg
     title: Gone with the wind
+  - date: '2018-06-25'
+    description: s
+    image: /images/3.jpg
+    title: Sleeping
 ---
 
