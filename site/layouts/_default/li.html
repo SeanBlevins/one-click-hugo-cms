@@ -3,9 +3,17 @@
 	<p class="mid-gray lh-title mb2">{{ .Date.Format "Mon, Jan 2, 2006" }}</p>
 	<p class="mb0">{{ .Description }}</p>
 	<p class="link b dib black mb0">Read more →</p>
+	{{ $page := . }}
 	{{ if .Params.Pieces }}
 		{{ range $piece := .Params.Pieces }}
-		<img src="{{ $piece.image }}" alt="{{ $piece.title }}" />
+			{{ $pieceFilename := strings.TrimPrefix "/images/" $piece.image }}
+			<img src="{{ $piece.image }}" alt="{{ $piece.title }}" />
+			{{ with $page.Site.GetPage "section" "images" }}
+				{{ with .Resources.GetMatch $pieceFilename }}
+					{{ $image100x := (.Resize "100x") }}  
+					<img src="{{ $image100x.RelPermalink }}" alt="{{ $piece.title }}" />
+				{{ end }}
+			{{ end }}	
 		{{ end }}
 	{{ end }}	
 </a>
