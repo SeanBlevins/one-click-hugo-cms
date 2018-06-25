@@ -7,11 +7,10 @@
 	{{ if .Params.Pieces }}
 		{{ range $piece := .Params.Pieces }}
 			{{ $pieceFilename := strings.TrimPrefix "/images/" $piece.image }}
-			<img src="{{ $piece.image }}" alt="{{ $piece.title }}" />
 			{{ with $page.Site.GetPage "section" "images" }}
 				{{ with .Resources.GetMatch $pieceFilename }}
-					{{ $image100x := (.Resize "100x") }}  
-					<img src="{{ $image100x.RelPermalink }}" alt="{{ $piece.title }}" />
+					{{ $image500x := (.Resize "500x") }}  
+					<img src="{{ $image500x.RelPermalink }}" alt="{{ $piece.title }}" />
 				{{ end }}
 			{{ end }}	
 		{{ end }}
