@@ -1,3 +1,6 @@
+
+
+
 /*! TACHYONS v4.5.5 | http://tachyons.io */
 
 /*
@@ -26,6 +29,9 @@
 
 /* External Library Includes */
 @import './imports/_reset';
+/* third party */
+@import 'photoswipe.css';
+@import 'default-skin.css';
 
 /* Modules */
 @import './imports/_box-sizing';

@@ -1,0 +1,131 @@
+{{ define "main" }}
+
+<style>
+  .my-gallery {
+  width: 100%;
+  float: left;
+}
+.my-gallery img {
+  width: 100%;
+  height: auto;
+}
+.my-gallery figure {
+  display: block;
+  float: left;
+  margin: 0 5px 5px 0;
+  width: 150px;
+}
+.my-gallery figcaption {
+  display: none;
+}
+</style>
+
+  <div class="mw6 center ph3 pv4">
+    <h1 class="f2 lh-title b mb3">{{.Title}}</h1>
+    <div class="flex justify-between grey-3">
+      <p>{{ .Date.Format "Mon, Jan 2, 2006" }}</p>
+      <p>Read in {{ .ReadingTime }} minutes</p>
+    </div>
+    <div class="cms mw6">
+      <p>{{ .Description }}</p>
+      {{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{ .Title }}" />{{ end }}
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ $page := . }}
+  {{ if .Params.Pieces }}
+
+    <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+  
+		{{ range $piece := .Params.Pieces }}
+			{{ $pieceFilename := strings.TrimPrefix "/images/" $piece.image }}
+			{{ with $page.Site.GetPage "section" "images" }}
+				{{ with .Resources.GetMatch $pieceFilename }}
+          {{ $image500x := (.Resize "500x") }}  
+          {{ $imageFit1024 := (.Fit "1024x1024") }}           
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+            <a href="{{ $imageFit1024.RelPermalink }}" itemprop="contentUrl" data-size="{{ $imageFit1024.Width }}x{{ $imageFit1024.Height }}">
+                <img src="{{ $image500x.RelPermalink }}" itemprop="thumbnail" alt="{{ $piece.description }}" />
+            </a>
+            <figcaption itemprop="caption description">{{ $piece.description }}</figcaption>
+                                                
+          </figure>
+
+
+				{{ end }}
+			{{ end }}	
+    {{ end }}
+    
+    </div>
+
+  {{ end }}	
+  
+  
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+  <!-- Background of PhotoSwipe. 
+       It's a separate element, as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg"></div>
+
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+      <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+          <div class="pswp__top-bar">
+
+              <!--  Controls are self-explanatory. Order can be changed. -->
+
+              <div class="pswp__counter"></div>
+
+              <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+              <button class="pswp__button pswp__button--share" title="Share"></button>
+
+              <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+              <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+              <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+              <!-- element will get class pswp__preloader--active when preloader is running -->
+              <div class="pswp__preloader">
+                  <div class="pswp__preloader__icn">
+                    <div class="pswp__preloader__cut">
+                      <div class="pswp__preloader__donut"></div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+              <div class="pswp__share-tooltip"></div> 
+          </div>
+
+          <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+          </button>
+
+          <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+          </button>
+
+          <div class="pswp__caption">
+              <div class="pswp__caption__center"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+</div>
+
+{{ end }}
