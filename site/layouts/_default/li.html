@@ -4,15 +4,13 @@
 	<p class="mb0">{{ .Description }}</p>
 	<p class="link b dib black mb0">Read more →</p>
 	{{ $page := . }}
-	{{ if .Params.Pieces }}
-		{{ range $piece := .Params.Pieces }}
-			{{ $pieceFilename := strings.TrimPrefix "/images/" $piece.image }}
-			{{ with $page.Site.GetPage "section" "images" }}
-				{{ with .Resources.GetMatch $pieceFilename }}
-					{{ $image500x := (.Resize "500x") }}  
-					<img src="{{ $image500x.RelPermalink }}" alt="{{ $piece.title }}" />
-				{{ end }}
-			{{ end }}	
-		{{ end }}
+	{{ if .Params.MainImage }}
+		{{ $pieceFilename := strings.TrimPrefix "/images/" .Params.MainImage }}
+		{{ with $page.Site.GetPage "section" "images" }}
+			{{ with .Resources.GetMatch $pieceFilename }}
+				{{ $image500x := (.Resize "500x") }}  
+				<img src="{{ $image500x.RelPermalink }}" alt="{{ .Params.MainImage }}" />
+			{{ end }}
+		{{ end }}	
 	{{ end }}	
 </a>

@@ -1,66 +1,37 @@
 {{ define "main" }}
 
-<style>
-  .my-gallery {
-  width: 100%;
-  float: left;
-}
-.my-gallery img {
-  width: 100%;
-  height: auto;
-}
-.my-gallery figure {
-  display: block;
-  float: left;
-  margin: 0 5px 5px 0;
-  width: 150px;
-}
-.my-gallery figcaption {
-  display: none;
-}
-</style>
-
-  <div class="mw6 center ph3 pv4">
-    <h1 class="f2 lh-title b mb3">{{.Title}}</h1>
-    <div class="flex justify-between grey-3">
-      <p>{{ .Date.Format "Mon, Jan 2, 2006" }}</p>
-      <p>Read in {{ .ReadingTime }} minutes</p>
-    </div>
-    <div class="cms mw6">
-      <p>{{ .Description }}</p>
-      {{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{ .Title }}" />{{ end }}
-      {{ .Content }}
-    </div>
-  </div>
-
-  {{ $page := . }}
-  {{ if .Params.Pieces }}
-
-    <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-  
-		{{ range $piece := .Params.Pieces }}
-			{{ $pieceFilename := strings.TrimPrefix "/images/" $piece.image }}
-			{{ with $page.Site.GetPage "section" "images" }}
-				{{ with .Resources.GetMatch $pieceFilename }}
-          {{ $image500x := (.Resize "500x") }}  
-          {{ $imageFit1024 := (.Fit "1024x1024") }}           
-          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-            <a href="{{ $imageFit1024.RelPermalink }}" itemprop="contentUrl" data-size="{{ $imageFit1024.Width }}x{{ $imageFit1024.Height }}">
-                <img src="{{ $image500x.RelPermalink }}" itemprop="thumbnail" alt="{{ $piece.description }}" />
-            </a>
-            <figcaption itemprop="caption description">{{ $piece.description }}</figcaption>
-                                                
-          </figure>
 
 
-				{{ end }}
-			{{ end }}	
-    {{ end }}
-    
-    </div>
+<article>
+    <h2 class="f3 fw4 pa3 mv0">{{.Title}}</h2>
+      {{ $page := . }}
+      {{ if .Params.Pieces }}
 
-  {{ end }}	
-  
+        <div class="my-gallery cf pa2" itemscope itemtype="http://schema.org/ImageGallery">
+        
+	    	{{ range $piece := .Params.Pieces }}
+	    		{{ $pieceFilename := strings.TrimPrefix "/images/" $piece.image }}
+	    		{{ with $page.Site.GetPage "section" "images" }}
+	    			{{ with .Resources.GetMatch $pieceFilename }}
+              {{ $image500x500 := (.Fill "500x500") }}  
+              {{ $imageFit1024 := (.Fit "1024x1024") }}           
+              <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="fl w-50 w-25-m w-20-l pa2 border-box">
+                <a href="{{ $imageFit1024.RelPermalink }}" class="db link dim tc" itemprop="contentUrl" data-size="{{ $imageFit1024.Width }}x{{ $imageFit1024.Height }}">
+                    <img src="{{ $image500x500.RelPermalink }}" class="w-100 db outline black-10" itemprop="thumbnail" alt="{{ $piece.description }}" />
+                </a>
+                <figcaption style="display: none" itemprop="caption description">{{ $piece.description }}</figcaption>
+              </figure>
+            
+            
+	    			{{ end }}
+	    		{{ end }}	
+        {{ end }}
+            
+        </div>
+      
+      {{ end }}
+  </article>
+
   
   <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

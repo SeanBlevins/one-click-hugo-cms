@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Great coffee with a conscience on Homepage</title>
+    <link>/</link>
+    <description>Recent content in Great coffee with a conscience on Homepage</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bees</title>
+      <link>/commision/bees/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/commision/bees/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Illustrations</title>
+      <link>/portfolio/illustrations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/illustrations/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Paintings</title>
+      <link>/portfolio/paintings/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/paintings/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

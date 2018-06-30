@@ -1,0 +1,32 @@
+{{ define "main" }}
+
+<article>
+  <h2 class="f3 fw4 pa3 mv0">Collections</h2>
+  <div class="cf pa2">
+    {{ range .Pages.ByPublishDate }}
+      
+    
+    <div class="fl w-50 w-25-m w-20-l pa2">
+      <a href="{{ .Permalink }}" class="db link dim tc">
+        {{ $page := . }}
+        {{ if .Params.MainImage }}
+          {{ $title := .Params.Title }}
+          {{ $pieceFilename := strings.TrimPrefix "/images/" .Params.MainImage }}
+          {{ with $page.Site.GetPage "section" "images" }}
+            {{ with .Resources.GetMatch $pieceFilename }}
+              {{ $image500x500 := (.Fill "500x500") }}  
+              <img src="{{ $image500x500.RelPermalink }}" alt="{{ $title }}" class="w-100 db outline black-10"/>
+            {{ end }}
+          {{ end }}	
+        {{ end }}
+        <dl class="mt2 f6 lh-copy">
+          <dt class="clip">Title</dt>
+          <dd class="ml0 black truncate w-100">{{ .Params.Title }}</dd>
+        </dl>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+</article>
+
+{{end}}
